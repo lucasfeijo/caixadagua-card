@@ -299,7 +299,7 @@ class CaixaDaguaCard extends HTMLElement {
   setConfig(config) {
     // Chaves obrigatórias para a configuração
     const requiredKeys = [
-      'figure', 'show_title', 'title', 'subtitle'
+      'figure'
     ];
 
     // Verifica se todas as chaves necessárias estão presentes em config
