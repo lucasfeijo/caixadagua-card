@@ -1,6 +1,6 @@
 class CaixaDaguaCard extends HTMLElement {
   set hass(hass) {
-    // Chaves necessárias para a configuração
+    // Chaves necessárias para a configuração - Na verdade nem todas são necessarias.
     const requiredKeys = [
       'figure', 'table1', 'table2', 'show_title', 'title', 'subtitle'
     ];
