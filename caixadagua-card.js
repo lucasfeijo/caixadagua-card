@@ -171,7 +171,7 @@ class CaixaDaguaCard extends HTMLElement {
           }
           .water-tank-wrapper {
             width: min(200px, 70%);
-            aspect-ratio: 1; // Força proporção 1:1 (quadrado)
+            aspect-ratio: 100/${this._config.height_ratio || 100}; // Usa a proporção configurada
             position: relative;
             margin: 0 auto;
           }
@@ -312,7 +312,6 @@ class CaixaDaguaCard extends HTMLElement {
   }
 
   setConfig(config) {
-    // Chaves obrigatórias para a configuração
     const requiredKeys = [
       'figure'
     ];
@@ -324,7 +323,11 @@ class CaixaDaguaCard extends HTMLElement {
       }
     }
 
-    this._config = config;
+    // Define a proporção padrão como 100% (quadrado)
+    this._config = {
+      height_ratio: 100,
+      ...config
+    };
   }
 
   getCardSize() {
