@@ -13,14 +13,24 @@ class CaixaDaguaCard extends HTMLElement {
         return value;
       } else if (!isNaN(parseFloat(value))) {
         return parseFloat(value);
-      } else if (hass.states[value]) {
-        return parseFloat(hass.states[value].state);
-      } else if (typeof value === 'string' && value.includes('{{')) {
-        const result = await hass.callApi('POST', 'template', { template: value });
-        return parseFloat(result);
-      } else {
-        return 'N/A';  // Retorna 'N/A' se não encontrar valor válido
+      } else if (typeof value === 'string') {
+        if (hass.states[value]) {
+          // Se for uma entidade direta
+          return parseFloat(hass.states[value].state);
+        } else if (value.includes('{{')) {
+          // Se for um template
+          try {
+            const template = value.replace(/\{\{|\}\}/g, '').trim();
+            const entityId = template.split('.')[2];
+            if (hass.states[entityId]) {
+              return parseFloat(hass.states[entityId].state);
+            }
+          } catch (error) {
+            console.error('Erro ao processar template:', error);
+          }
+        }
       }
+      return 'N/A';
     };
 
     // Função para popular a configuração com os valores obtidos
@@ -60,11 +70,16 @@ class CaixaDaguaCard extends HTMLElement {
       const percentualCaixaTotal = config.figure['percentage_volume'];
       let displayLabel = '';
 
-      // Verifica qual label usar
-      if (config.figure['liters_label'] !== undefined && config.figure['liters_label'] !== 'N/A') {
-        displayLabel = `${config.figure['liters_label']}L`;
+      // Verifica qual label usar e garante que os valores são números
+      const litersValue = config.figure['liters_label'];
+      const percentageValue = config.figure['percentage_volume'];
+
+      if (litersValue && litersValue !== 'N/A') {
+        displayLabel = `${Math.round(litersValue)}L`;
+      } else if (percentageValue && percentageValue !== 'N/A') {
+        displayLabel = `${Math.round(percentageValue)}%`;
       } else {
-        displayLabel = `${config.figure['percentage_volume']}%`;
+        displayLabel = '0%';
       }
 
       const entityDisplay = [];
