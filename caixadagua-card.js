@@ -29,7 +29,8 @@ class CaixaDaguaCard extends HTMLElement {
         if (key === 'figure') {
           config[key] = {
             'percentage_volume': await getValue(this._config[key]['percentage_volume']),
-            'percentage_volume_label': await getValue(this._config[key]['percentage_volume_label'])
+            'percentage_volume_label': await getValue(this._config[key]['percentage_volume_label']),
+            'liters_label': await getValue(this._config[key]['liters_label'])
           };
         } else if (key === 'table1' || key === 'table2') {
           if (config[key] == undefined) {
@@ -57,7 +58,14 @@ class CaixaDaguaCard extends HTMLElement {
       await populateConfig();
 
       const percentualCaixaTotal = config.figure['percentage_volume'];
-      const percentualCaixa = config.figure['percentage_volume_label'];
+      let displayLabel = '';
+
+      // Verifica qual label usar
+      if (config.figure['liters_label'] !== undefined && config.figure['liters_label'] !== 'N/A') {
+        displayLabel = `${config.figure['liters_label']}L`;
+      } else {
+        displayLabel = `${config.figure['percentage_volume']}%`;
+      }
 
       const entityDisplay = [];
       if (config.table1) {
@@ -316,7 +324,7 @@ class CaixaDaguaCard extends HTMLElement {
         }
 
         this.querySelector('#water').style.height = `${percentualCaixaTotal}%`;
-        this.querySelector('#water-label').innerText = `${percentualCaixa}`;
+        this.querySelector('#water-label').innerText = displayLabel;
       };
 
       updateData();
