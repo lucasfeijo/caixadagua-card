@@ -159,9 +159,10 @@ class CaixaDaguaCard extends HTMLElement {
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 0 10px;
           }
           .tampa {
-            width: 80%;
+            width: 115%;
             position: relative;
             background-color: #ddd;
             height: 6px;
@@ -182,8 +183,8 @@ class CaixaDaguaCard extends HTMLElement {
             left: 0;
             width: 100%;
             height: 100%;
-            border: 3px solid black;
-            border-radius: 5px;
+            border: 2px solid black;
+            border-radius: 4px;
             overflow: hidden;
             background-color: #ddd;
             transform: perspective(500px) rotateX(-35deg);
@@ -201,7 +202,7 @@ class CaixaDaguaCard extends HTMLElement {
             width: 100%;
             text-align: center;
             font-weight: bold;
-            font-size: clamp(18px, 6vw, 32px);
+            font-size: ${this._config.label_size}px;
             color: white;
             transform: translateY(50%);
           }
@@ -254,6 +255,19 @@ class CaixaDaguaCard extends HTMLElement {
             }
             .water-label {
               font-size: clamp(24px, 6vw, 32px);
+            }
+          }
+          @media (max-width: 300px) {
+            .tank {
+              max-width: 150px;
+            }
+            
+            .tampa {
+              width: 110%;
+            }
+            
+            .water-label {
+              font-size: calc(${this._config.label_size}px * 0.75);
             }
           }
         `;
@@ -324,9 +338,10 @@ class CaixaDaguaCard extends HTMLElement {
       }
     }
 
-    // Define a proporção padrão como 100% (quadrado)
+    // Define valores padrão
     this._config = {
       height_ratio: 100,
+      label_size: 32, // Tamanho padrão da fonte
       ...config
     };
   }

@@ -2,5 +2,6 @@
     "name": "Caixa D'agua",
     "filename": "caixadagua-card.js",
     "homeassistant": "2024.07.0",
-    "render_readme": true
+    "render_readme": true,
+    "version": "1.0.0"
 }
