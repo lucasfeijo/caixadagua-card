@@ -129,12 +129,12 @@ class CaixaDaguaCard extends HTMLElement {
           }
           p.atualizacao {
             text-align: right;
-            max-width: 380px;
+            max-width: 100%;
             margin: 15px auto 0 auto;
             font-size: 12px;
           }
           .table-responsive {
-            max-width: 380px;
+            max-width: 100%;
             margin: 0 auto;
             border: 1px solid #dfdfdf;
           }
@@ -154,10 +154,13 @@ class CaixaDaguaCard extends HTMLElement {
           }
           .tank {
             margin: 30px auto 10px auto;
-            max-width: 380px;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
           }
           .tampa {
-            width: 230px;
+            width: min(230px, 80%);
             position: relative;
             background-color: #ddd;
             height: 6px;
@@ -167,8 +170,8 @@ class CaixaDaguaCard extends HTMLElement {
             margin: 0 auto;
           }
           .water-tank {
-            width: 200px;
-            height: 200px;
+            width: min(200px, 70%);
+            height: min(200px, 70vw);
             border: 3px solid black;
             border-radius: 5px;
             position: relative;
@@ -235,11 +238,13 @@ class CaixaDaguaCard extends HTMLElement {
           }
           @media (max-width: 768px) {
             h2 {
-              font-size: 24px;
+              font-size: clamp(18px, 5vw, 24px);
             }
             p.titulo {
-              text-align: center;
-              font-size: 16px;
+              font-size: clamp(14px, 4vw, 16px);
+            }
+            .water-label {
+              font-size: clamp(24px, 6vw, 32px);
             }
           }
         `;
