@@ -159,22 +159,23 @@ class CaixaDaguaCard extends HTMLElement {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0 10px;
+            position: relative;
           }
           .tampa {
             width: 115%;
-            position: relative;
+            position: absolute;
             background-color: #ddd;
             height: 6px;
             border-radius: 2px;
-            left: 0; 
-            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
             margin: 0 auto;
           }
           .water-tank-wrapper {
             width: 100%;
             position: relative;
-            margin: 0 auto;
+            margin: 15px auto 0;
             padding-bottom: calc(100% * ${this._config.height_ratio || 100} / 100);
           }
           .water-tank {
