@@ -171,9 +171,9 @@ class CaixaDaguaCard extends HTMLElement {
           }
           .water-tank-wrapper {
             width: min(200px, 70%);
-            aspect-ratio: 100/${this._config.height_ratio || 100}; // Usa a proporção configurada
             position: relative;
             margin: 0 auto;
+            padding-bottom: calc(min(200px, 70%) * ${this._config.height_ratio || 100} / 100);
           }
           .water-tank {
             position: absolute;
@@ -200,7 +200,7 @@ class CaixaDaguaCard extends HTMLElement {
             width: 100%;
             text-align: center;
             font-weight: bold;
-            font-size: clamp(24px, 8vw, 32px);
+            font-size: clamp(24px, min(8vw, 8vh), 32px);
             color: white;
             transform: translateY(50%);
           }
