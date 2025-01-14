@@ -155,12 +155,13 @@ class CaixaDaguaCard extends HTMLElement {
           .tank {
             margin: 20px auto 10px auto;
             width: 100%;
+            max-width: 200px;
             display: flex;
             flex-direction: column;
             align-items: center;
           }
           .tampa {
-            width: min(230px, 80%);
+            width: 80%;
             position: relative;
             background-color: #ddd;
             height: 6px;
@@ -170,10 +171,10 @@ class CaixaDaguaCard extends HTMLElement {
             margin: 0 auto;
           }
           .water-tank-wrapper {
-            width: min(200px, 70%);
+            width: 100%;
             position: relative;
             margin: 0 auto;
-            padding-bottom: calc(min(200px, 70%) * ${this._config.height_ratio || 100} / 100);
+            padding-bottom: calc(100% * ${this._config.height_ratio || 100} / 100);
           }
           .water-tank {
             position: absolute;
@@ -200,7 +201,7 @@ class CaixaDaguaCard extends HTMLElement {
             width: 100%;
             text-align: center;
             font-weight: bold;
-            font-size: clamp(24px, min(8vw, 8vh), 32px);
+            font-size: clamp(18px, 6vw, 32px);
             color: white;
             transform: translateY(50%);
           }
