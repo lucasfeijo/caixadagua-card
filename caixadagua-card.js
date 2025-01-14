@@ -153,34 +153,39 @@ class CaixaDaguaCard extends HTMLElement {
             width: 25%;
           }
           .tank {
-            margin: min(30px, 5vh) auto min(10px, 2vh) auto;
-            max-width: 100%;
-            height: min(60vh, 500px);
+            margin: 20px auto 10px auto;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
           }
           .tampa {
             width: min(230px, 80%);
             position: relative;
             background-color: #ddd;
-            height: min(6px, 1vh);
+            height: 6px;
             border-radius: 2px;
             left: 0; 
-            top: min(6px, 1vh);
+            top: 6px;
+            margin: 0 auto;
+          }
+          .water-tank-wrapper {
+            width: min(200px, 70%);
+            aspect-ratio: 1; // Força proporção 1:1 (quadrado)
+            position: relative;
             margin: 0 auto;
           }
           .water-tank {
-            width: min(200px, 70%);
-            height: min(200px, 40vh);
-            border: min(3px, 0.5vh) solid black;
-            border-radius: min(5px, 1vh);
-            position: relative;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid black;
+            border-radius: 5px;
             overflow: hidden;
             background-color: #ddd;
             transform: perspective(500px) rotateX(-35deg);
-            margin: 0 auto;
           }
           .water-level {
             position: absolute;
@@ -195,7 +200,7 @@ class CaixaDaguaCard extends HTMLElement {
             width: 100%;
             text-align: center;
             font-weight: bold;
-            font-size: min(32px, 5vh);
+            font-size: clamp(24px, 8vw, 32px);
             color: white;
             transform: translateY(50%);
           }
@@ -260,9 +265,11 @@ class CaixaDaguaCard extends HTMLElement {
             ${name}
             <div class="tank">
               <div class="tampa"></div>
-              <div class="water-tank">
-                <div id="water" class="water-level" style="height: 0;"></div>
-                <span id="water-label" class="water-label">0%</span>
+              <div class="water-tank-wrapper">
+                <div class="water-tank">
+                  <div id="water" class="water-level" style="height: 0;"></div>
+                  <span id="water-label" class="water-label">0</span>
+                </div>
               </div>
             </div>
             ${table}
