@@ -75,9 +75,9 @@ class CaixaDaguaCard extends HTMLElement {
       const percentageValue = config.figure['percentage_volume'];
 
       if (litersValue && litersValue !== 'N/A') {
-        displayLabel = `${Math.round(litersValue)}L`;
+        displayLabel = `${Math.round(litersValue)} L`;
       } else if (percentageValue && percentageValue !== 'N/A') {
-        displayLabel = `${Math.round(percentageValue)}%`;
+        displayLabel = `${Math.round(percentageValue)} %`;
       } else {
         displayLabel = '0%';
       }
@@ -138,17 +138,17 @@ class CaixaDaguaCard extends HTMLElement {
 
         let css = `
           body {
-            background-color: var(--card-background-color);
+            background-color: ${this._config.use_card_theme ? 'var(--card-background-color)' : '#1c1c1c'};
             color: white;
           }
           h2 {
             margin-top: 20px;
-            font-size: 36px;
+            font-size: ${this._config.title_size}px;
             text-align: center;
           }
           p.titulo {
             text-align: center;
-            font-size: 18px;
+            font-size: ${this._config.subtitle_size}px;
           }
           p.atualizacao {
             text-align: right;
@@ -159,7 +159,7 @@ class CaixaDaguaCard extends HTMLElement {
           .table-responsive {
             max-width: 100%;
             margin: 0 auto;
-            border: 1px solid #dfdfdf;
+            border: 1px solid ${this._config.use_card_theme ? '#dfdfdf' : '#343434'};
           }
           table {
             margin-bottom: 0 !important;
@@ -272,11 +272,11 @@ class CaixaDaguaCard extends HTMLElement {
           }
           @media (max-width: 768px) {
             h2 {
-              font-size: clamp(18px, 5vw, 24px);
+              font-size: clamp(18px, 5vw, ${this._config.title_size}px);
               margin-top: min(20px, 3vh);
             }
             p.titulo {
-              font-size: clamp(14px, 4vw, 16px);
+              font-size: clamp(14px, 4vw, ${this._config.subtitle_size}px);
             }
             .water-label {
               font-size: clamp(24px, 6vw, 32px);
@@ -356,17 +356,17 @@ class CaixaDaguaCard extends HTMLElement {
       'figure'
     ];
 
-    // Verifica se todas as chaves necessárias estão presentes em config
-    for (const key of requiredKeys) {
-      if (!(key in config)) {
-        throw new Error('Configuração inválida');
-      }
+    if (!(requiredKeys[0] in config)) {
+      throw new Error('Configuração inválida');
     }
 
     // Define valores padrão
     this._config = {
       height_ratio: 100,
-      label_size: 32, // Tamanho padrão da fonte
+      label_size: 32,
+      title_size: 36,
+      subtitle_size: 18,
+      use_card_theme: false,
       ...config
     };
   }
