@@ -167,7 +167,7 @@ class CaixaDaguaCard extends HTMLElement {
             background-color: #ddd;
             height: 6px;
             border-radius: 2px;
-            left: -7%;
+            left: 50%;
             transform: translateX(-50%);
             top: 0;
             margin: 0 auto;
@@ -177,6 +177,7 @@ class CaixaDaguaCard extends HTMLElement {
             position: relative;
             margin: 15px auto 0;
             padding-bottom: calc(100% * ${this._config.height_ratio || 100} / 100);
+            margin-top: 5px;
           }
           .water-tank {
             position: absolute;
