@@ -153,27 +153,29 @@ class CaixaDaguaCard extends HTMLElement {
             width: 25%;
           }
           .tank {
-            margin: 30px auto 10px auto;
+            margin: min(30px, 5vh) auto min(10px, 2vh) auto;
             max-width: 100%;
+            height: min(60vh, 500px);
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
           }
           .tampa {
             width: min(230px, 80%);
             position: relative;
             background-color: #ddd;
-            height: 6px;
+            height: min(6px, 1vh);
             border-radius: 2px;
             left: 0; 
-            top: 6px;
+            top: min(6px, 1vh);
             margin: 0 auto;
           }
           .water-tank {
             width: min(200px, 70%);
-            height: min(200px, 70vw);
-            border: 3px solid black;
-            border-radius: 5px;
+            height: min(200px, 40vh);
+            border: min(3px, 0.5vh) solid black;
+            border-radius: min(5px, 1vh);
             position: relative;
             overflow: hidden;
             background-color: #ddd;
@@ -193,7 +195,7 @@ class CaixaDaguaCard extends HTMLElement {
             width: 100%;
             text-align: center;
             font-weight: bold;
-            font-size: 32px;
+            font-size: min(32px, 5vh);
             color: white;
             transform: translateY(50%);
           }
@@ -239,6 +241,7 @@ class CaixaDaguaCard extends HTMLElement {
           @media (max-width: 768px) {
             h2 {
               font-size: clamp(18px, 5vw, 24px);
+              margin-top: min(20px, 3vh);
             }
             p.titulo {
               font-size: clamp(14px, 4vw, 16px);
@@ -289,7 +292,7 @@ class CaixaDaguaCard extends HTMLElement {
         }
 
         this.querySelector('#water').style.height = `${percentualCaixaTotal}%`;
-        this.querySelector('#water-label').innerText = `${percentualCaixa}%`;
+        this.querySelector('#water-label').innerText = `${percentualCaixa}`;
       };
 
       updateData();
